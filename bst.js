@@ -17,12 +17,15 @@ BST.prototype.add = function (val) {
 };
 
 BST.prototype.remove = function (val) {
-  
+  if (this.root == null) {
+    return;
+  } else {
+    this.root.remove(val);
+  }
 }
 
 BST.prototype.draw = function (x, y) {
   // console.log(this);
-  layer = 1;
   if (this.root) {
     // console.log(this.root.iot());
     this.root.draw(x, y);

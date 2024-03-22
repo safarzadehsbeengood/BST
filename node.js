@@ -46,6 +46,34 @@ function Node(val) {
       return;
     }
   }
+
+  Node.prototype.remove = function(val) {
+    if (val > this.val) {
+      this.right.remove(val);
+    } else if (val < this.val) {
+      this.left.remove(val);
+    }
+    let temp;
+    if (this.right == null) {
+      temp = this.left;
+    } else if (this.left == null) {
+      temp = this.right;
+    } else {
+      let succParent = this;
+      let succ = this.right;
+      while (succ.left != null) {
+        succParent = succ;
+        succ = succ.left;
+      }
+      if (succParent != this) {
+        succParent.left = succ.right;
+      } else {
+        succParent.right = succ.right;
+      }
+      this.val = succ.val;
+      return;
+    }
+  }
   
   Node.prototype.iot = function() {
     if (this.left) {
